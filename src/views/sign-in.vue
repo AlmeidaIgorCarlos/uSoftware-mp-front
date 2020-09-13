@@ -4,7 +4,7 @@
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12">
-            <v-toolbar color="primary" dark flat>
+            <v-toolbar color="#053F5E" dark flat>
               <v-toolbar-title>Formulário de Login</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
@@ -28,7 +28,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="signIn">Login</v-btn>
+              <v-btn color="#053F5E" class="button-color" @click="signIn">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -40,7 +40,11 @@
 <script>
 import UserService from "../services/user.service";
 import UserEntity from "../entities/user.entity";
-import { Errors } from "@/services/errors.enum";
+import {Session} from "../services/session.enum"
+import {SuccessfulMessages} from "../services/seccessful.enum";
+import { Errors } from "../services/errors.enum";
+import router from "../router"
+import { mapActions } from "vuex"
 
 export default {
   data: () => ({
@@ -49,11 +53,15 @@ export default {
     password: undefined,
   }),
   methods: {
+    ...mapActions(['setUserStateAction']),
     async signIn() {
       try {
         const user = new UserEntity(0, "", this.login, this.password);
         const resultUser = await this.userService.get(user);
-        console.log(resultUser);
+        this.setUserStateAction(resultUser)
+        alert(SuccessfulMessages.login)
+        sessionStorage.setItem(Session.usoftwareUser, JSON.stringify(resultUser))
+        await router.push('/main')
       } catch (error) {
         if (error.message === Errors.userNotFound) alert(error.message);
         else console.log(error)
@@ -64,4 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button-color{
+  color: white
+}
 </style>

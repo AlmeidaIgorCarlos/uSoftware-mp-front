@@ -1,13 +1,15 @@
 export default class User{
-    constructor(id: string, nome: string, login: string, senha: string){
+    constructor(id: string, name: string, login: string, password = '', accessToken = ''){
         this.id = id
-        this.nome = nome
+        this.name = name
         this.login = login
-        this.senha = senha
+        this.password = password
+        this.accessToken = accessToken
     }
 
     id: string
-    nome: string
+    name: string
     login: string
-    senha: string
+    password: string
+    accessToken: string
 }

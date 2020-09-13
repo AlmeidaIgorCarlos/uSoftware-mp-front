@@ -1,3 +1,4 @@
+//Enum that contains all error messages from the application
 export enum Errors{
-    userNotFound = 'It was not possible to find the user'
+    userNotFound = 'Não foi possível realizar a autenticação'
 }
