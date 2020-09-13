@@ -13,7 +13,29 @@ const routes: Array<RouteConfig> = [
   {
     path: '/main',
     name: 'Main',
-    component: () => import(/*webpackChunkName: "main" */ "../views/main.vue")
+    component: () => import(/*webpackChunkName: "main" */ "../views/main.vue"),
+    children:[
+      {
+        path: 'units',
+        component: () => import(/*webpackChunkName: "main" */ "../views/units.vue")
+      },
+      {
+        path: 'new-orders',
+        component: () => import(/*webpackChunkName: "main" */ "../views/new-orders.vue")
+      },
+      {
+        path: 'old-orders',
+        component: () => import(/*webpackChunkName: "main" */ "../views/old-orders.vue")
+      },
+      {
+        path: 'reports',
+        component: () => import(/*webpackChunkName: "main" */ "../views/reports.vue")
+      },
+      {
+        path: 'configuration',
+        component: () => import(/*webpackChunkName: "main" */ "../views/configuration.vue")
+      }
+    ]
   }
 ]
 

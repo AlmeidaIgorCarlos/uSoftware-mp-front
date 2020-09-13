@@ -7,7 +7,9 @@
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Unidades</v-list-item-title>
+            <v-list-item-title>
+                <router-link to="/main/units">Unidades</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -15,7 +17,9 @@
             <v-icon>mdi-file-alert</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Atendimentos Solicitados</v-list-item-title>
+            <v-list-item-title>
+                 <router-link to="/main/new-orders">Novos Atendimentos</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -23,7 +27,9 @@
             <v-icon>mdi-file-clock</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Meus Atendimentos</v-list-item-title>
+            <v-list-item-title>
+                 <router-link to="/main/old-orders">Meus Atendimentos</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -31,7 +37,9 @@
             <v-icon>mdi-file-chart</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Relatórios</v-list-item-title>
+            <v-list-item-title>
+                 <router-link to="/main/reports">Relatórios</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link>
@@ -39,7 +47,9 @@
             <v-icon>mdi-account-box</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Configurações</v-list-item-title>
+            <v-list-item-title>
+                <router-link to="/main/configuration">Configurações</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
@@ -53,7 +63,9 @@
             <v-icon>mdi-exit-to-app</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Sair</v-list-item-title>
+            <v-list-item-title>
+                <router-link to="/">Sair</router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -67,6 +79,8 @@
     <v-main>
       <v-container class="fill-height" fluid>
         <!-- CONTENT -->
+        <router-view>
+        </router-view>
       </v-container>
     </v-main>
     <v-footer color="#053F5E" app>
@@ -84,4 +98,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+a {
+  text-decoration: none;
+  color: black;
+}
 </style>
