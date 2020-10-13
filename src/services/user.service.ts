@@ -40,4 +40,7 @@ export default class User implements Service<UserEntity> {
     delete(userEntity: UserEntity): Promise<UserEntity> {
         throw new Error("Method not implemented.");
     }
+    getAll(token: string): Promise<UserEntity[]> {
+        throw new Error('Method not implemented.');
+    }
 }
