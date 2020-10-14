@@ -13,7 +13,7 @@ export default class Prosecution implements Service<ProsecutionUnit>{
     }
 
     async update(entity: ProsecutionUnit, token?: string): Promise<ProsecutionUnit> {
-        await axios.put(`${process.env.VUE_APP_API_URL}/api/Promotorias/Promotorias/${entity.id}`, {
+        await axios.put(`${process.env.VUE_APP_API_URL}/api/Promotorias/${entity.id}`, {
             id: entity.id,
             nome: entity.name,
             rua: entity.street,
@@ -32,7 +32,7 @@ export default class Prosecution implements Service<ProsecutionUnit>{
     }
 
     async delete(entity: ProsecutionUnit, token?: string): Promise<ProsecutionUnit> {
-        await axios.delete(`${process.env.VUE_APP_API_URL}/api/Promotorias/Promotorias/${entity.id}`, {
+        await axios.delete(`${process.env.VUE_APP_API_URL}/api/Promotorias/${entity.id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -52,12 +52,9 @@ export default class Prosecution implements Service<ProsecutionUnit>{
         const apiResult = axiosResult.data
 
         const Prosecutions: ProsecutionUnit[] = apiResult.map((item: any) => {
-            console.log(item)
             const comments = Array.isArray(item.opinioes) ?
                 item.opinioes.map((opniao: any) => new Comment(opniao.id, opniao.descricao, opniao.criadoEm))
                 : []
-
-                console.log(comments)
 
             return new ProsecutionUnit(
                 item.nome,
