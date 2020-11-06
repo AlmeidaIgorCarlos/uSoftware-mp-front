@@ -52,16 +52,9 @@
               <v-text-field
                 placeholder="Exemplo: 1520"
                 label="Número"
-                v-model="selectedProsecution.number"
+                type="number"
+                v-model.number="selectedProsecution.number"
               />
-              <!-- <v-select
-                label="Horário de Abertura"
-                :items="prosecutions"
-              ></v-select>
-              <v-select
-                label="Horário de Fechamento"
-                :items="prosecutions"
-              ></v-select> -->
               <v-row justify="space-evenly">
                 <v-btn color="primary" @click="updateProsecution(selectedProsecution)">Salvar</v-btn>
                 <v-btn

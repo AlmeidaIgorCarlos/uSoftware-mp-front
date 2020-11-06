@@ -30,7 +30,7 @@
         <v-form
           class="item-order"
           v-for="attendance in filteredAttendances"
-          :key="attendance.protocol"
+          :key="attendance.id"
         >
           <v-row justify="start">
             <v-col cols="12" sm="6">
@@ -114,7 +114,9 @@ export default {
     this.attendanceService = attendanceService;
 
     const attendances = await attendanceService.getAll(accessToken);
-    this.attendances = attendances.filter((item) => item.prosecutorId === 0);
+    this.attendances = attendances
+    .filter((item) => item.prosecutorId === 0)
+    .splice(0, 10);
 
     const cities = this.attendances.map((item) => item.prosecutionUnitCity);
     this.cities = cities;
@@ -157,6 +159,7 @@ export default {
           promotoriaCidade: attendance.prosecutionUnitCity,
           criadoEm: attendance.createdAt,
           removidoEm: attendance.removedAt,
+          situacoes: attendance.situations
         },
         this.accessToken
       );

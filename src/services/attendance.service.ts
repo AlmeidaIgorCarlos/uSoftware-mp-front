@@ -6,28 +6,67 @@ import AttendanceEntity from '@/entities/attendance.entity';
 
 //AttendanceService - implements the Service interface whit the generics type of the UserEntity
 export default class Attendance implements Service<AttendanceEntity> {
-    get(entity: AttendanceEntity, token?: string): Promise<AttendanceEntity> {
-        throw new Error('Method not implemented.');
-    }
-
-    save(entity: AttendanceEntity): Promise<AttendanceEntity> {
-        throw new Error("Method not implemented.");
-    }
-    async update(entity: AttendanceEntity, token: string): Promise<AttendanceEntity> {
-        await axios.put(`${process.env.VUE_APP_API_URL}/api/Atendimentos/${entity.id}`, {
-            ...entity,
-            ID: entity.id
-        },{
+    async get(entity: AttendanceEntity, token?: string): Promise<AttendanceEntity> {
+        const axiosResult = await axios.get(`${process.env.VUE_APP_API_URL}/api/Atendimentos/${entity.id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
 
-        return entity
+        const apiResult = axiosResult.data
+
+        return apiResult
     }
-    delete(entity: AttendanceEntity): Promise<AttendanceEntity> {
+
+    save(entity: AttendanceEntity): Promise<AttendanceEntity> {
         throw new Error("Method not implemented.");
     }
+
+    async update(entity: AttendanceEntity, token: string): Promise<AttendanceEntity> {
+        const attendance: any = await this.get(entity, token)
+        attendance.situacoes = entity.situations
+
+        const sessionStorageData = sessionStorage.getItem('usoftware-mp')
+        if (sessionStorageData) {
+            const parsedData = JSON.parse(sessionStorageData)
+            attendance.promotorID = parsedData.id
+            attendance.promotorNome = parsedData.name
+        }
+        else {
+            attendance.promotorID = 1
+            attendance.promotorNome = 'Primeiro promotor'
+        }
+
+
+        await axios.put(`${process.env.VUE_APP_API_URL}/api/Atendimentos/${entity.id}`, {
+            ...attendance
+
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        return entity
+    }
+
+    async delete(entity: AttendanceEntity, token?: string): Promise<AttendanceEntity> {
+        const attendance: any = await this.get(entity, token)
+        attendance.status = "Encerrado"
+
+        await axios.put(`${process.env.VUE_APP_API_URL}/api/Atendimentos/AtualizaStatus/${entity.id}`, {
+            ...attendance
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        return entity
+    }
+
     async getAll(token: string): Promise<AttendanceEntity[]> {
         const axiosResult = await axios.get(`${process.env.VUE_APP_API_URL}/api/Atendimentos`, {
             headers: {
@@ -54,10 +93,9 @@ export default class Attendance implements Service<AttendanceEntity> {
             item.cidadaoCelular,
             item.promotoriaCidade,
             item.criadoEm,
-            item.removidoEm
+            item.removidoEm,
+            item.situacoes
         ))
-
-        console.log(attendaceEntities)
 
         return attendaceEntities
     }

@@ -42,16 +42,6 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-account-box</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-                <router-link to="/main/configuration">Configurações</router-link>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item>
           <v-list-item-action>
           </v-list-item-action>

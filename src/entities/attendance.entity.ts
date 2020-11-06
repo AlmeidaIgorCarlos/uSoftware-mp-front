@@ -16,7 +16,8 @@ export default class AttendanceEntity {
         userPhoneNumber: string,
         prosecutionUnitCity: string,
         createdAt: string,
-        removedAt: string
+        removedAt: string,
+        situations: any
     ) {
         this.id = id
         this.attendanceDate = attendanceDate
@@ -35,6 +36,7 @@ export default class AttendanceEntity {
         this.prosecutionUnitCity = prosecutionUnitCity
         this.createdAt = createdAt
         this.removedAt = removedAt
+        this.situations = situations
     }
 
     id: string
@@ -54,4 +56,5 @@ export default class AttendanceEntity {
     prosecutionUnitCity: string
     createdAt: string
     removedAt: string
+    situations: any
 }

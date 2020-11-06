@@ -14,7 +14,7 @@ const routes: Array<RouteConfig> = [
     path: '/main',
     name: 'Main',
     component: () => import(/*webpackChunkName: "main" */ "../views/main.vue"),
-    children:[
+    children: [
       {
         path: 'units',
         component: () => import(/*webpackChunkName: "main" */ "../views/units.vue")
@@ -30,10 +30,6 @@ const routes: Array<RouteConfig> = [
       {
         path: 'reports',
         component: () => import(/*webpackChunkName: "main" */ "../views/reports.vue")
-      },
-      {
-        path: 'configuration',
-        component: () => import(/*webpackChunkName: "main" */ "../views/configuration.vue")
       }
     ]
   }
@@ -48,9 +44,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path === '/main') {
     if (!sessionStorage.getItem(Session.usoftwareUser))
-      next({path: '/'})
+      next({ path: '/' })
   }
-    next()
+  next()
 })
 
 export default router
