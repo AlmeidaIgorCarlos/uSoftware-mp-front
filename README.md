@@ -37,17 +37,4 @@ It's important to highlight that once case is closed, the Back-end will be respo
 
 ## Reports
 During the use of the platform, we realize that it's important for the employee the see some reports of what is happening inside the tool. The reports that will be avaiable for now are:
-- Quantity of cases per unity;
-- Quantity of closed cases per unity;
-- Quantity of cases in your unity per month, it'll must have to be filtered by year;
-- Quantity of closed cases in your unity per month against the total of cases per month, it'll must have to be filtered by year;
-
-## Account Configuration
-Just like every web app, we thought that it's important for the user to have the power to see and update your personal info inside the platform.
-
-# Documentation
-This section is reserved for the necessary documentation that will be needed to undersand the app from a tech point of view.
-
-## Use Case Diagram
-This is the Use Case Diagram, I've put the Back-end as an actor only to explain some aspects for others integrants of the group.
-![Alt text](docs/use_case_english.png)
+- Quantity of cases opened per month of the year

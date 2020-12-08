@@ -199,7 +199,4 @@ export default {
 .card-scroll {
   overflow-y: scroll;
 }
-
-.item-order {
-}
 </style>
